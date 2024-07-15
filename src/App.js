@@ -1,25 +1,24 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Form from './Form';
+import Output from './Output';
 import './App.css';
 
-function App() {
+const App = () => {
+  const [submittedData, setSubmittedData] = useState(null);
+
+  const handleFormSubmit = (data) => {
+    setSubmittedData(data);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app-container">
+      {submittedData ? (
+        <Output data={submittedData} />
+      ) : (
+        <Form onSubmit={handleFormSubmit} />
+      )}
     </div>
   );
-}
+};
 
 export default App;
